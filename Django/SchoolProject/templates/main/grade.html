@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Классы
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Список классов</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Буква класса</th>
+                <th>Номер класса</th>
+                <th>Куратор</th>
+               
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for class in grade_context %}
+                <tr>
+                    <td>{{ class.char }}</td>
+                    <td>{{ class.numder }}</td>
+                    <td>{{ class.curator}}</td>
+                </tr>
+
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+

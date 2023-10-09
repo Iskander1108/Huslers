@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Главная страница
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <a type="button" class= "btn btn-success" href="{% url 'director_page' %}">
+        Директор
+    </a>
+
+    <a type="button" class= "btn btn-success" href="{% url 'zauch_page' %}">
+        Зауч
+    </a>
+
+    <a type="button" class="btn btn-success" href="{% url 'student_page' %}">
+        Студенты
+    </a>
+
+    <a type="button" class="btn btn-success" href="{% url 'curator_page' %}">
+        Преподователи
+    </a>
+
+    <a type="button" class="btn btn-success" href="{% url 'grade_page' %}">
+        Классы
+    </a>
+
+    <a type="button" class="btn btn-success" href="{% url 'lesson_page' %}">
+        Уроки
+    </a>
+
+</div>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+

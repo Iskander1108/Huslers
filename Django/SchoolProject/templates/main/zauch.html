@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Зауч
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Список заучей</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Изображение</th>
+                <th>Номер телефона</th>
+                <th>Дата рождения</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for zau in zauch_context %}
+                <tr>
+                    <td>{{ zau.first_name }}</td>
+                    <td>{{ zau.last_name }}</td>
+                    <td>
+                        <img src="{{ zau.image.url }}" width="300">
+                    </td>
+                    <td>{{ zau.phone }}</td>
+                    <td>{{ zau.birth_date }}</td>
+                </tr>
+
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+

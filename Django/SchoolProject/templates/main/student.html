@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Студенты
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Список студентов</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Изображение</th>
+                <th>Номер телефона</th>
+                <th>Дата рождения</th>
+                <th>Класс</th>
+                <th>Место жительства</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for stud in student_context %}
+                <tr>
+                    <td>{{ stud.first_name }}</td>
+                    <td>{{ stud.last_name }}</td>
+                    <td>
+                        <img src="{{ stud.image.url }}" width="300">
+                    </td>
+                    <td>{{ stud.phone }}</td>
+                    <td>{{ stud.birth_date }}</td>
+                    <td>{{ stud.grade }}</td>
+                    <td>{{ stud.location }}</td>
+                </tr>
+
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+

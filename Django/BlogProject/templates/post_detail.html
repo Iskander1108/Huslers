@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+    <!-- Подключение стилей Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Навигационное меню Bootstrap -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Мой блог</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Главная</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">О нас</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Контакты</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Контейнер с контентом поста -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1>{{ post.title }}</h1>
+            <p class="text-muted">Дата публикации: {{ post.created_at }}</p>
+            <img width="500" height="500" src="{{ post.image.url }}" alt="{{ post.title }}" style="border-radius: 15px;">
+            <p><strong>Автор:</strong> {{ post.author }}</p>
+            <p><strong>Категория:</strong> {{ post.category }}</p>
+            <p><strong>Теги:</strong>
+                {% for tag in post.tag.all %}
+                    {{ tag }}
+                {% endfor %}
+            </p>
+            <p><strong>Местоположение:</strong> {{ post.location }}</p>
+            <p>{{ post.description }}</p>
+        </div>
+    </div>
+</div>
+
+<!-- Блок комментариев -->
+<div class="container mt-5">
+    <h2>Комментарии</h2>
+    {% for comment in comments %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ comment.author }}</h5>
+                <p class="card-text">{{ comment.content }}</p>
+                <p style="font-size: 12px !important;" class="card-text">{{comment.created_at}}</p>
+            </div>
+        </div>
+    {% endfor %}
+    
+    <!-- Форма для добавления комментариев -->
+    <h3>Добавить комментарий</h3>
+    <!-- Добавить комментарий -->
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="comment_author">Ваше имя:</label>
+            {{ form.author }}
+            <!-- <input type="text" class="form-control" id="comment_author" name="comment_author" required> -->
+        </div>
+        <div class="form-group">
+            <label for="comment_content">Комментарий:</label>
+            {{ form.content }}
+            <!-- <textarea class="form-control" id="comment_content" name="comment_content" rows="4" required></textarea> -->
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+
+<!-- Подключение скриптов Bootstrap и jQuery (необходимо для некоторых компонентов Bootstrap) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
